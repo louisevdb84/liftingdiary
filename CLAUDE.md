@@ -4,6 +4,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 @AGENTS.md
 
+## IMPORTANT: Always Read Relevant Docs First
+
+**Before writing any code**, you MUST read the relevant documentation file in the `/docs` directory. Every feature, component, page, or API route has a corresponding doc — consult it first and follow it exactly. Do not rely on training data or assumptions; the `/docs` directory is the authoritative source for how this project should be built.
+
+`/docs/ui.md` 
+
 ## Commands
 
 ```bash
