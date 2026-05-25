@@ -131,6 +131,38 @@ async function handleClick() {
 }
 ```
 
+## Rule: No `redirect()` in Server Actions
+
+Never call `redirect()` inside a Server Action. Redirects must be handled client-side after the Server Action resolves.
+
+```ts
+// BAD — redirect inside a server action
+export async function createWorkoutAction(params: ...) {
+  const workout = await createWorkout(...);
+  redirect(`/dashboard/workout/${workout.id}`); // ❌
+}
+
+// GOOD — server action returns data, client handles navigation
+export async function createWorkoutAction(params: ...) {
+  return createWorkout(...); // ✅
+}
+```
+
+```tsx
+// GOOD — client component navigates after the action resolves
+"use client";
+import { useRouter } from "next/navigation";
+
+export function NewWorkoutForm() {
+  const router = useRouter();
+
+  async function handleSubmit() {
+    const workout = await createWorkoutAction({ ... });
+    router.push(`/dashboard/workout/${workout.id}`);
+  }
+}
+```
+
 ## Full Example
 
 ```

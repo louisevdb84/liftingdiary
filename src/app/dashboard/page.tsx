@@ -1,7 +1,8 @@
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
+import Link from "next/link";
 import { format } from "date-fns";
-import { Dumbbell, Flame, Clock, ChevronRight } from "lucide-react";
+import { Dumbbell, Flame, Clock, ChevronRight, Plus } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
@@ -105,6 +106,13 @@ export default async function DashboardPage({
                 {totalDuration > 0 ? ` · ${totalDuration} min` : ""}
               </p>
             </div>
+            <Link
+              href="/dashboard/workout/new"
+              className="inline-flex items-center gap-1.5 rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+            >
+              <Plus className="h-4 w-4" />
+              New Workout
+            </Link>
           </div>
 
           <Separator />

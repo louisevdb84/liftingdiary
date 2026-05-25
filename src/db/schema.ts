@@ -11,6 +11,7 @@ export const exercises = pgTable("exercises", {
 export const workouts = pgTable("workouts", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   clerkUserId: varchar({ length: 255 }).notNull(),
+  name: varchar({ length: 255 }),
   startedAt: timestamp().defaultNow().notNull(),
   finishedAt: timestamp(),
   createdAt: timestamp().defaultNow().notNull(),
