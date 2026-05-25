@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Geist_Mono } from "next/font/google";
 import { ClerkProvider, Show, UserButton } from "@clerk/nextjs";
+import Link from "next/link";
 import "./globals.css";
 
 const inter = Inter({
@@ -31,7 +32,17 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <ClerkProvider>
-          <header className="flex items-center justify-end px-6 py-3 border-b border-zinc-200 dark:border-zinc-800">
+          <header className="flex items-center justify-between px-6 py-3 border-b border-zinc-200 dark:border-zinc-800">
+            <Show when="signed-in">
+              <nav className="flex items-center gap-6 text-sm font-medium">
+                <Link href="/dashboard" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Dashboard
+                </Link>
+                <Link href="/exercises" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Exercises
+                </Link>
+              </nav>
+            </Show>
             <Show when="signed-in">
               <UserButton />
             </Show>
